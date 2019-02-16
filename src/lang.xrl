@@ -5,9 +5,9 @@ Terminator = \n|\r\n|\r
 Comma = ,
 
 Digit = [0-9]
-NonZeroDigit = [1-9]
-NegativeSign = [\-]
-FractionalPart = \.{Digit}+
+PosDigit = [1-9]
+Minus = [\-]
+Frac = \.{Digit}+
 OpenArray = \[
 CloseArray = \]
 OpenCurly = \{
@@ -18,12 +18,11 @@ True = true
 False = false
 Null = null
 
-IntegerPart = {NegativeSign}?0|{NegativeSign}?{NonZeroDigit}{Digit}*
+IntegerPart = {Minus}?0|{Minus}?{PosDigit}{Digit}*
 IntValue    = {IntegerPart}
-FloatValue  = {IntegerPart}{FractionalPart}|{IntegerPart}{ExponentPart}|{IntegerPart}{FractionalPart}{ExponentPart}
+FloatValue  = {IntegerPart}{Frac}|{IntegerPart}
 
 Rules.
-
 {Whitespace}  : skip_token.
 {Terminator}  : skip_token.
 {Comma}       : {token, {comma, TokenLine, list_to_atom(TokenChars)}}.

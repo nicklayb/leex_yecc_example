@@ -19,7 +19,6 @@ object -> open_curly close_curly : {object, []}.
 
 pairs -> pair comma pairs : ['$1' | '$3'].
 pairs -> pair : ['$1'].
-
 pair -> string colon value : {'$1', '$3'}.
 
 array -> open_array list close_array : {array, '$2'}.

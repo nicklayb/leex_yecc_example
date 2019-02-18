@@ -1,6 +1,6 @@
 -module(parse).
 -export([parse/1, parse_and_scan/1, format_error/1]).
--file("src/parse.yrl", 31).
+-file("src/parse.yrl", 30).
 unwrap({_, _, V}) -> V.
 
 -file("/usr/local/Cellar/erlang/21.2/lib/erlang/lib/parsetools-2.1.8/include/yeccpre.hrl", 0).
@@ -431,7 +431,7 @@ yeccpars2_13_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_16_/1}).
--file("src/parse.yrl", 19).
+-file("src/parse.yrl", 18).
 yeccpars2_16_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -455,7 +455,7 @@ yeccpars2_19_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_20_/1}).
--file("src/parse.yrl", 25).
+-file("src/parse.yrl", 24).
 yeccpars2_20_(__Stack0) ->
  [__1 | __Stack] = __Stack0,
  [begin
@@ -463,7 +463,7 @@ yeccpars2_20_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_22_/1}).
--file("src/parse.yrl", 22).
+-file("src/parse.yrl", 21).
 yeccpars2_22_(__Stack0) ->
  [__2,__1 | __Stack] = __Stack0,
  [begin
@@ -471,7 +471,7 @@ yeccpars2_22_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_23_/1}).
--file("src/parse.yrl", 21).
+-file("src/parse.yrl", 20).
 yeccpars2_23_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -479,7 +479,7 @@ yeccpars2_23_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_25_/1}).
--file("src/parse.yrl", 24).
+-file("src/parse.yrl", 23).
 yeccpars2_25_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -487,4 +487,4 @@ yeccpars2_25_(__Stack0) ->
   end | __Stack].
 
 
--file("src/parse.yrl", 33).
+-file("src/parse.yrl", 32).

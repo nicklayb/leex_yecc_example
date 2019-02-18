@@ -12,7 +12,7 @@
 -export([format_error/1]).
 
 %% User code. This is placed here to allow extra attributes.
--file("src/lang.xrl", 42).
+-file("src/lang.xrl", 41).
 
 -file("/usr/local/Cellar/erlang/21.2/lib/erlang/lib/parsetools-2.1.8/include/leexinc.hrl", 14).
 
@@ -503,72 +503,72 @@ yyaction(13, TokenLen, YYtcs, TokenLine) ->
 yyaction(_, _, _, _) -> error.
 
 -compile({inline,yyaction_0/0}).
--file("src/lang.xrl", 25).
+-file("src/lang.xrl", 24).
 yyaction_0() ->
      skip_token .
 
 -compile({inline,yyaction_1/0}).
--file("src/lang.xrl", 26).
+-file("src/lang.xrl", 25).
 yyaction_1() ->
      skip_token .
 
 -compile({inline,yyaction_2/2}).
--file("src/lang.xrl", 27).
+-file("src/lang.xrl", 26).
 yyaction_2(TokenChars, TokenLine) ->
      { token, { comma, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_3/2}).
--file("src/lang.xrl", 28).
+-file("src/lang.xrl", 27).
 yyaction_3(TokenChars, TokenLine) ->
      { token, { int, TokenLine, list_to_integer (TokenChars) } } .
 
 -compile({inline,yyaction_4/2}).
--file("src/lang.xrl", 29).
+-file("src/lang.xrl", 28).
 yyaction_4(TokenChars, TokenLine) ->
      { token, { float, TokenLine, list_to_float (TokenChars) } } .
 
 -compile({inline,yyaction_5/2}).
--file("src/lang.xrl", 30).
+-file("src/lang.xrl", 29).
 yyaction_5(TokenChars, TokenLine) ->
-     { token, { string, TokenLine, string : trim (TokenChars, both, "\"") } } .
+     { token, { string, TokenLine, list_to_binary (string : trim (TokenChars, both, "\"")) } } .
 
 -compile({inline,yyaction_6/1}).
--file("src/lang.xrl", 31).
+-file("src/lang.xrl", 30).
 yyaction_6(TokenLine) ->
      { token, { bool, TokenLine, true } } .
 
 -compile({inline,yyaction_7/1}).
--file("src/lang.xrl", 32).
+-file("src/lang.xrl", 31).
 yyaction_7(TokenLine) ->
      { token, { bool, TokenLine, false } } .
 
 -compile({inline,yyaction_8/1}).
--file("src/lang.xrl", 33).
+-file("src/lang.xrl", 32).
 yyaction_8(TokenLine) ->
      { token, { null, TokenLine, nil } } .
 
 -compile({inline,yyaction_9/2}).
--file("src/lang.xrl", 34).
+-file("src/lang.xrl", 33).
 yyaction_9(TokenChars, TokenLine) ->
      { token, { open_curly, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_10/2}).
--file("src/lang.xrl", 35).
+-file("src/lang.xrl", 34).
 yyaction_10(TokenChars, TokenLine) ->
      { token, { close_curly, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_11/2}).
--file("src/lang.xrl", 36).
+-file("src/lang.xrl", 35).
 yyaction_11(TokenChars, TokenLine) ->
      { token, { open_array, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_12/2}).
--file("src/lang.xrl", 37).
+-file("src/lang.xrl", 36).
 yyaction_12(TokenChars, TokenLine) ->
      { token, { close_array, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_13/2}).
--file("src/lang.xrl", 38).
+-file("src/lang.xrl", 37).
 yyaction_13(TokenChars, TokenLine) ->
      { token, { colon, TokenLine, list_to_atom (TokenChars) } } .
 

@@ -1,5 +1,4 @@
 defmodule LeexYeccExample do
-
   def parse(string) do
     {:ok, tokens, _} = :lang.string(string)
     {:ok, tree} = :parse.parse(tokens)

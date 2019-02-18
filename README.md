@@ -1,6 +1,6 @@
 # LeexYeccExample
 
-**TODO: Add description**
+A leex and yecc example for the 2019-03 Montreal Elixir Meetup talk
 
 ## Installation
 

@@ -1,4 +1,5 @@
 defmodule LeexYeccExample do
+  def parse(string) when is_bitstring(string), do: string |> String.to_charlist() |> parse()
   def parse(string) do
     {:ok, tokens, _} = :lang.string(string)
     {:ok, tree} = :parse.parse(tokens)

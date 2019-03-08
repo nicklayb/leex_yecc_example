@@ -47,15 +47,10 @@ iex> {:ok, tokens, _} = json |> :lang.string
    {:close_curly, 1, :"}"}
  ], 1}
 iex> tokens |> :parse.parse
-{:ok,
- {:object,
-  [
-    {{:string, 1, "user"},
-     {:object,
-      [
-        {{:string, 1, "name"}, {:string, 1, "Bobby Hill"}},
-        {{:string, 1, "post_ids"},
-         {:array, [{:int, 1, 1}, {:int, 1, 2}, {:int, 1, 3}, {:int, 1, 4}]}}
-      ]}}
-  ]}}
+{:ok, %{
+  "user" => %{
+    "name" => "Bobby Hill",
+    "post_ids" => [1, 2, 3, 4]
+  }
+}}
 ```

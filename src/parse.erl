@@ -2,8 +2,10 @@
 -export([parse/1, parse_and_scan/1, format_error/1]).
 -file("src/parse.yrl", 30).
 unwrap({_, _, V}) -> V.
+put_tuple({Key, Value}) -> maps:put(Key,Value, #{}).
+put_tuple({Key, Value}, Other) -> maps:merge(maps:put(Key,Value, #{}), Other).
 
--file("/usr/local/Cellar/erlang/21.2/lib/erlang/lib/parsetools-2.1.8/include/yeccpre.hrl", 0).
+-file("/usr/local/Cellar/erlang/21.2.7/lib/erlang/lib/parsetools-2.1.8/include/yeccpre.hrl", 0).
 %%
 %% %CopyrightBegin%
 %%
@@ -175,7 +177,7 @@ yecctoken2string(Other) ->
 
 
 
--file("src/parse.erl", 178).
+-file("src/parse.erl", 180).
 
 -dialyzer({nowarn_function, yeccpars2/7}).
 yeccpars2(0=S, Cat, Ss, Stack, T, Ts, Tzr) ->
@@ -264,16 +266,20 @@ yeccpars2_3(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
  yeccgoto_value(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
 
 yeccpars2_4(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
- yeccgoto_value(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
+ NewStack = yeccpars2_4_(Stack),
+ yeccgoto_value(hd(Ss), Cat, Ss, NewStack, T, Ts, Tzr).
 
 yeccpars2_5(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
- yeccgoto_value(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
+ NewStack = yeccpars2_5_(Stack),
+ yeccgoto_value(hd(Ss), Cat, Ss, NewStack, T, Ts, Tzr).
 
 yeccpars2_6(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
- yeccgoto_value(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
+ NewStack = yeccpars2_6_(Stack),
+ yeccgoto_value(hd(Ss), Cat, Ss, NewStack, T, Ts, Tzr).
 
 yeccpars2_7(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
- yeccgoto_value(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
+ NewStack = yeccpars2_7_(Stack),
+ yeccgoto_value(hd(Ss), Cat, Ss, NewStack, T, Ts, Tzr).
 
 yeccpars2_8(S, close_array, Ss, Stack, T, Ts, Tzr) ->
  yeccpars1(S, 22, Ss, Stack, T, Ts, Tzr);
@@ -289,7 +295,8 @@ yeccpars2_9(_, _, _, _, T, _, _) ->
  yeccerror(T).
 
 yeccpars2_10(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
- yeccgoto_value(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
+ NewStack = yeccpars2_10_(Stack),
+ yeccgoto_value(hd(Ss), Cat, Ss, NewStack, T, Ts, Tzr).
 
 -dialyzer({nowarn_function, yeccpars2_11/7}).
 yeccpars2_11(S, close_curly, Ss, Stack, T, Ts, Tzr) ->
@@ -414,12 +421,52 @@ yeccgoto_value(15=_S, Cat, Ss, Stack, T, Ts, Tzr) ->
 yeccgoto_value(24, Cat, Ss, Stack, T, Ts, Tzr) ->
  yeccpars2_20(20, Cat, Ss, Stack, T, Ts, Tzr).
 
+-compile({inline,yeccpars2_4_/1}).
+-file("src/parse.yrl", 10).
+yeccpars2_4_(__Stack0) ->
+ [__1 | __Stack] = __Stack0,
+ [begin
+   unwrap ( __1 )
+  end | __Stack].
+
+-compile({inline,yeccpars2_5_/1}).
+-file("src/parse.yrl", 8).
+yeccpars2_5_(__Stack0) ->
+ [__1 | __Stack] = __Stack0,
+ [begin
+   unwrap ( __1 )
+  end | __Stack].
+
+-compile({inline,yeccpars2_6_/1}).
+-file("src/parse.yrl", 7).
+yeccpars2_6_(__Stack0) ->
+ [__1 | __Stack] = __Stack0,
+ [begin
+   unwrap ( __1 )
+  end | __Stack].
+
+-compile({inline,yeccpars2_7_/1}).
+-file("src/parse.yrl", 11).
+yeccpars2_7_(__Stack0) ->
+ [__1 | __Stack] = __Stack0,
+ [begin
+   unwrap ( __1 )
+  end | __Stack].
+
+-compile({inline,yeccpars2_10_/1}).
+-file("src/parse.yrl", 9).
+yeccpars2_10_(__Stack0) ->
+ [__1 | __Stack] = __Stack0,
+ [begin
+   unwrap ( __1 )
+  end | __Stack].
+
 -compile({inline,yeccpars2_12_/1}).
 -file("src/parse.yrl", 17).
 yeccpars2_12_(__Stack0) ->
  [__1 | __Stack] = __Stack0,
  [begin
-   [ __1 ]
+   put_tuple ( __1 )
   end | __Stack].
 
 -compile({inline,yeccpars2_13_/1}).
@@ -427,7 +474,7 @@ yeccpars2_12_(__Stack0) ->
 yeccpars2_13_(__Stack0) ->
  [__2,__1 | __Stack] = __Stack0,
  [begin
-   { object , [ ] }
+   # { }
   end | __Stack].
 
 -compile({inline,yeccpars2_16_/1}).
@@ -435,7 +482,7 @@ yeccpars2_13_(__Stack0) ->
 yeccpars2_16_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
-   { __1 , __3 }
+   { unwrap ( __1 ) , __3 }
   end | __Stack].
 
 -compile({inline,yeccpars2_18_/1}).
@@ -443,7 +490,7 @@ yeccpars2_16_(__Stack0) ->
 yeccpars2_18_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
-   [ __1 | __3 ]
+   put_tuple ( __1 , __3 )
   end | __Stack].
 
 -compile({inline,yeccpars2_19_/1}).
@@ -451,7 +498,7 @@ yeccpars2_18_(__Stack0) ->
 yeccpars2_19_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
-   { object , __2 }
+   __2
   end | __Stack].
 
 -compile({inline,yeccpars2_20_/1}).
@@ -467,7 +514,7 @@ yeccpars2_20_(__Stack0) ->
 yeccpars2_22_(__Stack0) ->
  [__2,__1 | __Stack] = __Stack0,
  [begin
-   { array , [ ] }
+   [ ]
   end | __Stack].
 
 -compile({inline,yeccpars2_23_/1}).
@@ -475,7 +522,7 @@ yeccpars2_22_(__Stack0) ->
 yeccpars2_23_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
-   { array , __2 }
+   __2
   end | __Stack].
 
 -compile({inline,yeccpars2_25_/1}).
@@ -487,4 +534,4 @@ yeccpars2_25_(__Stack0) ->
   end | __Stack].
 
 
--file("src/parse.yrl", 32).
+-file("src/parse.yrl", 34).

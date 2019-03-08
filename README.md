@@ -6,6 +6,8 @@ A leex and yecc example for the 2019-03 Montreal Elixir Meetup talk
 
 This repo uses leex and yecc to tokenize and parse JSON file into a map.
 
+See the full presentation here [https://docs.google.com/presentation/d/1fMbJhD7CNCWylZJqvHioH_f_y7UA0qbmD_infIxLA-w/edit?usp=sharing](https://docs.google.com/presentation/d/1fMbJhD7CNCWylZJqvHioH_f_y7UA0qbmD_infIxLA-w/edit?usp=sharing)
+
 ## Usage
 
 ### Using the Elixir module

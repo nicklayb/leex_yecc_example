@@ -24,6 +24,10 @@ defmodule LeexYeccExampleTest do
     json = '{"temp": 18.32}'
     expected = %{"temp" => 18.32}
     assert LeexYeccExample.parse(json) == {:ok, expected}
+
+    json = '{"temp": 0.32}'
+    expected = %{"temp" => 0.32}
+    assert LeexYeccExample.parse(json) == {:ok, expected}
   end
 
   test "parses negative floats" do

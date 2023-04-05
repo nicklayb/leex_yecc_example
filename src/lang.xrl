@@ -6,7 +6,7 @@ Comma = ,
 
 Digit = [0-9]
 PosDigit = [1-9]
-Minus = [\-]
+Minus = -
 Frac = \.{Digit}+
 OpenArray = \[
 CloseArray = \]
@@ -18,7 +18,8 @@ True = true
 False = false
 Null = null
 
-IntegerPart = {Minus}?0|{Minus}?{PosDigit}{Digit}*
+PosInt      = {PosDigit}?{Digit}+
+IntegerPart = {Minus}?{PosInt}
 IntValue    = {IntegerPart}
 FloatValue  = {IntegerPart}{Frac}|{IntegerPart}
 
